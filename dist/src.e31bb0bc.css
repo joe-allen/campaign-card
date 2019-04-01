@@ -636,7 +636,7 @@ p {
   color: var(--grey);
   font-size: 1rem;
   line-height: 1.5rem;
-  font-weight: 100;
+  font-weight: 400; /* increasing font-size on mobile since `100` is hard to read */
 }
 p:not(:last-of-type) {
   margin-bottom: 0
@@ -755,7 +755,7 @@ strong {
   opacity: .5;
 }
 .card_front-donors_progress--complete {
-  width: 75%;
+  width: 17%;
   height: 100%;
   position: absolute;
   top: 0;
@@ -805,7 +805,7 @@ strong {
   opacity: .2;
 }
 .card_back--article-table_trow:last-of-type::after {
-  padding: 20px 0;
+  padding: 16px 0;
   border-bottom: 1px solid;
 }
 .card_back--article-table_trow {
@@ -826,7 +826,7 @@ strong {
   text-align: center;
 }
 .card_back--article-table_td {
-  font-weight: 100;
+  font-weight: 400; /* increasing font-size on mobile since `100` is hard to read */
   width: 33.33%;
   padding: .65rem 0;
   white-space: nowrap;
@@ -856,5 +856,9 @@ strong {
   }
   .card--container {
     width: 400px;
+  }
+  p,
+  .card_back--article-table_td {
+    font-weight: 100;
   }
 }

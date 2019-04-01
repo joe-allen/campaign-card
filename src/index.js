@@ -4,16 +4,18 @@ import './css/index.css';
 import donors from './assets/donors.json'
 
 const campaignCard = () => ({
+  // initiate cache
   _cache() {
     let cache = (
       {
         cardIsFront: true,
+        limitDonorsShown: 10
       }
     );
     return cache;
   },
+  // flip card
   flip(e, data) {
-    let donorsTableSibling = document.querySelector('.card_back--article-table_thead');
     // toggle cardFront boolean
     data.cardIsFront = !data.cardIsFront;
 
@@ -62,36 +64,44 @@ const campaignCard = () => ({
       }, { once: true });
     }
   },
+  // set donor's info
   setDonors(data) {
     let donor;
     let total = 0;
     let donorsTableSibling = document.querySelector('.card_back--article-table_thead');
 
     data.donors.map((el, i) => {
-      donor =
-        `<div class="card_back--article-table_trow key_${i}">
-          <div class="card_back--article-table_td">${el.name}</div>
-          <div class="card_back--article-table_td">${el.amount}</div>
-          <div class="card_back--article-table_td">${el.type}</div>
-        </div>`;
 
-      total = el.amount + total;
+      // only show ten since
+      // this is a top 10 list
+      if(i < data.limitDonorsShown) {
+        donor =
+          `<div class="card_back--article-table_trow key_${i}">
+            <div class="card_back--article-table_td">${el.name}</div>
+            <div class="card_back--article-table_td">$${el.amount}</div>
+            <div class="card_back--article-table_td">${el.type}</div>
+          </div>`;
 
-      // append donor(s) after `div.card_back--article-table_thead`
-      donorsTableSibling.insertAdjacentHTML("afterend", donor);
+        total = el.amount + total;
+
+        // append donor(s) after `div.card_back--article-table_thead`
+        donorsTableSibling.insertAdjacentHTML("afterend", donor);
+      }
     });
 
     return total;
   },
-  setDonorsTotal(total) {
+  // set donor total
+  setDonorTotal(total) {
     let elements = document.querySelectorAll('.donorTotal--js');
 
     // loop elements
     for(let i = 0; i < elements.length; i++) {
       // display total donated
-      elements[i].textContent = total;
+      elements[i].textContent = total.toLocaleString();
     }
   },
+  // set number of donors
   setNumOfDonors(total) {
     let elements = document.querySelectorAll('.numOfDonors--js');
 
@@ -113,7 +123,7 @@ const campaignCard = () => ({
 
     // build donor data
     let total = this.setDonors(data);
-    this.setDonorsTotal(total);
+    this.setDonorTotal(total);
     this.setNumOfDonors(data.donors.length);
 
     // listen for card click

@@ -244,15 +244,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var campaignCard = function campaignCard() {
   return {
+    // initiate cache
     _cache: function _cache() {
       var cache = {
-        cardIsFront: true
+        cardIsFront: true,
+        limitDonorsShown: 10
       };
       return cache;
     },
+    // flip card
     flip: function flip(e, data) {
-      var donorsTableSibling = document.querySelector('.card_back--article-table_thead'); // toggle cardFront boolean
-
+      // toggle cardFront boolean
       data.cardIsFront = !data.cardIsFront; // if card front visible
 
       if (data.cardIsFront) {
@@ -300,26 +302,33 @@ var campaignCard = function campaignCard() {
         });
       }
     },
+    // set donor's info
     setDonors: function setDonors(data) {
       var donor;
       var total = 0;
       var donorsTableSibling = document.querySelector('.card_back--article-table_thead');
       data.donors.map(function (el, i) {
-        donor = "<div class=\"card_back--article-table_trow key_".concat(i, "\">\n          <div class=\"card_back--article-table_td\">").concat(el.name, "</div>\n          <div class=\"card_back--article-table_td\">").concat(el.amount, "</div>\n          <div class=\"card_back--article-table_td\">").concat(el.type, "</div>\n        </div>");
-        total = el.amount + total; // append donor(s) after `div.card_back--article-table_thead`
+        // only show ten since
+        // this is a top 10 list
+        if (i < data.limitDonorsShown) {
+          donor = "<div class=\"card_back--article-table_trow key_".concat(i, "\">\n            <div class=\"card_back--article-table_td\">").concat(el.name, "</div>\n            <div class=\"card_back--article-table_td\">$").concat(el.amount, "</div>\n            <div class=\"card_back--article-table_td\">").concat(el.type, "</div>\n          </div>");
+          total = el.amount + total; // append donor(s) after `div.card_back--article-table_thead`
 
-        donorsTableSibling.insertAdjacentHTML("afterend", donor);
+          donorsTableSibling.insertAdjacentHTML("afterend", donor);
+        }
       });
       return total;
     },
-    setDonorsTotal: function setDonorsTotal(total) {
+    // set donor total
+    setDonorTotal: function setDonorTotal(total) {
       var elements = document.querySelectorAll('.donorTotal--js'); // loop elements
 
       for (var i = 0; i < elements.length; i++) {
         // display total donated
-        elements[i].textContent = total;
+        elements[i].textContent = total.toLocaleString();
       }
     },
+    // set number of donors
     setNumOfDonors: function setNumOfDonors(total) {
       var elements = document.querySelectorAll('.numOfDonors--js'); // loop elements
 
@@ -341,7 +350,7 @@ var campaignCard = function campaignCard() {
       data.cardBack = document.querySelector(".card_back--container"); // build donor data
 
       var total = this.setDonors(data);
-      this.setDonorsTotal(total);
+      this.setDonorTotal(total);
       this.setNumOfDonors(data.donors.length); // listen for card click
 
       data.card.addEventListener("click", function (e) {
@@ -389,7 +398,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54041" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56647" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
