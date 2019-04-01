@@ -1,6 +1,6 @@
 # Frontend Homework - Campaign Card
 
-I have a great time build this. Thanks for the challenge!
+I had a great time building this. Thanks for the challenge!
 
 Browser Support:
 EDGE15+
