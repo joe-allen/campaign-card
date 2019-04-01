@@ -1,4 +1,9 @@
 /* global */
+* {
+  font-family: 'Roboto', sans-serif;
+  font-size: .9rem;
+
+}
 html {
   margin: 2rem 0;
 }
@@ -19,14 +24,17 @@ h2 {
   font-size: 1.25rem;
   margin: 0;
 }
-h3 {
+h3,
+h3 * {
   font-size: 1.5rem;
   opacity: .75;
   margin: 0;
 }
 p {
   color: var(--grey);
-  opacity: .5;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 100;
 }
 p:not(:last-of-type) {
   margin-bottom: 0
@@ -203,7 +211,6 @@ strong {
   justify-content: space-between;
   text-align: center;
   color: var(--grey);
-  opacity: .75;
   font-size: .95rem;
   position: relative;
 }
@@ -217,6 +224,7 @@ strong {
   text-align: center;
 }
 .card_back--article-table_td {
+  font-weight: 100;
   width: 33.33%;
   padding: .65rem 0;
   white-space: nowrap;

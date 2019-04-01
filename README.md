@@ -3,7 +3,7 @@
 I have a great time build this. Thanks for the challenge!
 
 Browser Support:
-IE11+
+EDGE15+
 
 ## ToDo:
 
@@ -25,3 +25,4 @@ IE11+
 - I used sanitize.css to reset browser defaults. I hope this is alright.
 - I would have liked to have tried/used the Web Animation API, but browser support isn't there yet in most cases. Instead I went with CSS Keyframes.
 - I did not use AJAX to pull JSON donor data. Had it been and API endpoint I would have gone with either Fetch or Axios. I hope this is okay.
+- Lastly, leveraging a marketing pixel to capture users who view the page versus people who make a donation could be helpful. With that data it would be possible to target specific audiences(e.g. on Facebook) in an effort to grow the campaign.
