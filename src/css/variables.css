@@ -1,0 +1,14 @@
+:root {
+  --black: #191919;
+  --white: #fff;
+  --grey: #6e6e6e;
+  --primaryColor: #fa8072;
+  --secondaryColor: #f5f503;
+  --accentColor: rebeccapurple;
+  --courier: "Courier New", Courier, monospace;
+  --animateTime: 150ms;
+  --headerPadding: 1rem 1rem 0;
+  --articlePadding: 1rem;
+  --boxShadow: 2px 4px 6px rgba(0,0,0,.1);
+  --boxShadowGrow: 20px 40px 60px rgba(0,0,0,.1);
+}
