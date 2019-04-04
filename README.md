@@ -1,7 +1,5 @@
 # Frontend Homework - Campaign Card
 
-I had a great time building this. Thanks for the challenge!
-
 Browser Support:
 EDGE15+
 
